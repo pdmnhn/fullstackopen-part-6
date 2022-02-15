@@ -19,14 +19,14 @@ const asObject = (anecdote) => {
 
 export const voteTo = (id) => {
   return {
-    type: "VOTE",
+    type: "anecdotes/vote",
     data: { id },
   };
 };
 
 export const createNew = (anecdote) => {
   return {
-    type: "NEW",
+    type: "anecdotes/new",
     data: {
       content: anecdote,
       id: getId(),
@@ -39,7 +39,7 @@ const initialState = anecdotesAtStart.map(asObject);
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "VOTE": {
+    case "anecdotes/vote": {
       return state
         .map((anc) => {
           if (anc.id === action.data.id) {
@@ -52,7 +52,7 @@ const reducer = (state = initialState, action) => {
           return b.votes - a.votes;
         });
     }
-    case "NEW": {
+    case "anecdotes/new": {
       const newState = state.map((anc) => {
         return { ...anc };
       });
