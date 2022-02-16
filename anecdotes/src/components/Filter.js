@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { search } from "../reducers/filterReducer";
 
-const Filter = () => {
-  const dispatch = useDispatch();
-
+const Filter = (props) => {
   const handleChange = (event) => {
-    dispatch(search(event.target.value));
+    props.search(event.target.value);
   };
 
   const style = {
@@ -19,4 +17,6 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+const ConnectedFilter = connect(null, { search })(Filter);
+
+export default ConnectedFilter;
